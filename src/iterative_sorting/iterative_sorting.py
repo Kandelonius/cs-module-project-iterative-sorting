@@ -3,7 +3,7 @@ import random
 
 def selection_sort(arr):
     # loop through n-1 elements
-    for outer in range(0, len(arr) - 1):
+    for outer in range(0, len(arr) - 1): # range 0 - length - 1 so we don't go out of range in inner loop
         cur_index = outer  # set iterating index
         # (hint, can do in 3 loc)
         ## set the first index as minimum
@@ -15,12 +15,9 @@ def selection_sort(arr):
                 smallest_index = inner  # set smallest index to the new smaller index
             ## then continue to the end of the array checking each element.
             ## if none are smaller, swap smallest with current then continue until all elements are sorted.
-
-        # TO-DO: swap
         temp = arr[outer]  # store leftmost value
         arr[outer] = arr[smallest_index]  # set leftmost value to smallest value
         arr[smallest_index] = temp
-
         # (arr[outer], arr[smallest_index]) = (
         #     arr[cur_index], arr[outer])  # using stored indexes and values to make the swap
     # print(arr)
@@ -64,8 +61,34 @@ What is the time and space complexity of the counting sort algorithm?
 
 
 def counting_sort(arr, maximum=None):
-    # Your code here
+    # find the max element as this is required knowledge for count sort
+    # initialize an array of max + 1 and fill it with 0
+    max = 0
+    size = len(arr)
+    output = [0] * size
+    for elem in arr:
+        if elem > max:
+            max = elem
+    temp_arr = [0] * (max + 1)
+    # for place in range(maximum + 1):
+    #     temparr[place] = 0
+    # store the count of each element at their respective index in temp array
+    # ie how many times does this value appear
+    for value in range(0, size):
+        temp_arr[arr[value]] += 1
 
+    # find the index of each element of the original array in the count array
+    for index in range(1, max + 1):
+        temp_arr[index] += temp_arr[index - 1]
+
+    iterations = size - 1
+    while iterations >= 0:
+        output[temp_arr[arr[iterations]] - 1] = arr[iterations]
+        temp_arr[arr[iterations]] -= 1
+        iterations -= 1
+
+    for i in range(0, size):
+        arr[i] = temp_arr[i]
     return arr
 
 
