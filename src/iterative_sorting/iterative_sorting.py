@@ -91,6 +91,8 @@ def counting_sort(arr, maximum=None):
         arr[i] = temp_arr[i]
     return arr
 
+# correct_array = [2, 2, 4, 8, 8, 9]
+# incorrect_array = [2, 0, 2, 4, 0, 1]
 
 arr1 = [1, 5, 8, 4, 2, 9, 6, 0, 3, 7]
 # (selection_sort(arr1))
