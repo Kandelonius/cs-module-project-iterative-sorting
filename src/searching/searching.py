@@ -8,8 +8,16 @@ def linear_search(arr, target):
 
 # Write an iterative implementation of Binary Search
 def binary_search(arr, target):
-
-
+    min = 0
+    max = len(arr) - 1
+    while min <= max:
+        midpoint = (max + min) // 2
+        if target == arr[midpoint]:
+            return midpoint
+        elif target < arr[midpoint]:
+            max = midpoint - 1
+        else:
+            min = midpoint + 1
     return -1  # not found
 
 # arr1 = [-2, 2, 2, 7, 7, 7, 7, 7, 7]
